@@ -1,11 +1,19 @@
 parameters:
+  # Nome da aplicação no servidor do SonarQube
   project_key: '' 
+  # Token de Acesso do SonarQube
   sonar_token: ''
+  # Caminho para o Dockefile do Sonar
   dockefile_path: ''
+  # Apenas para a stack 'nodejs', 
   sonar_settings_path: ''
+  # Contexto de build, atentar para a estrutura do repositório
   build_context: ''
-  command: 'buildAndPush'
+  # Comando Docker, só precisamos buildar a imagem da análise
+  command: 'build'
+  # Container Registry da Área de Projeto
   registry: 'nexus'
+  # Tipo: string | Valores aceitos: 'dotnet', 'nodejs'
   stack: 'dotnet'
 
 stages:

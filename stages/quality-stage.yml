@@ -2,9 +2,11 @@ parameters:
   project_key: '' 
   sonar_token: ''
   dockefile_path: ''
+  sonar_settings_path: ''
   build_context: ''
   command: 'buildAndPush'
   registry: 'nexus'
+  stack: 'dotnet'
 
 stages:
 - stage: Stage_1
@@ -16,7 +18,9 @@ stages:
     - checkout: self
       clean: False
     - task: 'Docker@2'
-      displayName: 'Sonar Scanner'
+      displayName: 'Sonar Scanner for dotnet'
+      condition: ()
       inputs:
         containerRegistry: ''
         command: ${{ parameters.command }}
+        Dockerfile: ${{ parameters.dockerfile_path }}

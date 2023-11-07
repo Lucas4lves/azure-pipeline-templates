@@ -1,6 +1,9 @@
 import yaml
+import sys 
 
-with open('./sonar-scanner.yml', 'r') as file:
+file_path = sys.argv[1]
+
+with open(file_path, 'r') as file:
     yaml_parser = yaml.safe_load(file)
 
 print(yaml_parser)

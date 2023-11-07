@@ -1,0 +1,15 @@
+parameters:
+    app_name: ''
+    path_to_dockerfile: ''
+    build_context: ''
+    registry: ''
+
+steps:
+- task: Docker@2
+  displayName: Build and Push ${{ parameters.app_name }}
+  inputs:
+    command: 'buildAndPush'
+    containerRegistry: ${{ parameters.registry }}
+    Dockerfile: ${{ parameters.path_to_dockerfile }}
+    buildContext: ${{ parameters.build_context }}
+

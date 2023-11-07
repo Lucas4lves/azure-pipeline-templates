@@ -1,0 +1,22 @@
+parameters:
+  project_key: '' 
+  sonar_token: ''
+  dockefile_path: ''
+  build_context: ''
+  command: 'buildAndPush'
+  registry: 'nexus'
+
+stages:
+- stage: Stage_1
+  displayName: 'Quality'
+  jobs:
+  - job: Job_1
+    displayName: 'SonarQube Analysis on Docker'
+    steps:
+    - checkout: self
+      clean: False
+    - task: 'Docker@2'
+      displayName: 'Sonar Scanner'
+      inputs:
+        containerRegistry: ''
+        command: ${{ parameters.command }}

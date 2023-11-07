@@ -27,8 +27,25 @@ stages:
       clean: False
     - task: 'Docker@2'
       displayName: 'Sonar Scanner for dotnet'
-      condition: ()
+      condition: and(eq(parameters.stack, 'dotnet'))
       inputs:
         containerRegistry: ''
         command: ${{ parameters.command }}
         Dockerfile: ${{ parameters.dockerfile_path }}
+
+  - job: Job_2
+    displayName: 'SonarQube Analysis on Docker'
+    steps:
+    - checkout: self
+      clean: False
+    - task: 'Docker@2'
+      displayName: 'Sonar Scanner for Node Js'
+      condition: and(eq(parameters.stack, 'nodejs'))
+      inputs:
+        containerRegistry: ''
+        command: ${{ parameters.command }}
+        Dockerfile: ${{ parameters.dockerfile_path }}
+  - job: Job_3
+    displayName: 'Trivy Image scan'
+    steps:
+      - task: 'Trivy@3' 

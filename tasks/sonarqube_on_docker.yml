@@ -1,0 +1,12 @@
+parameters:
+   project_key: ''
+   sonar_token: ''
+   sonar_host: ''
+steps:
+- task: Docker@2
+  displayName: 'Sonar Scanner'
+  inputs:
+    command: 'build'
+    containerRegistry: ${{}}
+
+

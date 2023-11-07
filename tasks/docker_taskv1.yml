@@ -3,6 +3,7 @@ parameters:
     path_to_dockerfile: ''
     build_context: ''
     registry: ''
+    arguments: ''
 
 steps:
 - task: Docker@2
@@ -12,4 +13,5 @@ steps:
     containerRegistry: ${{ parameters.registry }}
     Dockerfile: ${{ parameters.path_to_dockerfile }}
     buildContext: ${{ parameters.build_context }}
+    arguments: ${{ parameters.arguments }}
 
